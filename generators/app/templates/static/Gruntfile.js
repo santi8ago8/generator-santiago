@@ -68,8 +68,6 @@ module.exports = function (grunt) {
         grunt.log.ok(chalk.blue(jsToMinimize.length) + ' files with public prefix')
     });
 
-    grunt.registerTask('jsProd', ['addPublicPrefix', 'uglify:toProd', 'addMinifiedFiles']);
-    grunt.registerTask('serve', ['livereloadserver', 'nodemon:dev']);
     grunt.registerTask('debug', function () {
         //grunt.loadNpmTasks('grunt-node-inspector');
         //grunt.task.run('node-inspector');
@@ -109,7 +107,10 @@ module.exports = function (grunt) {
         setTimeout(function () {
             require("open")(url);
         }, 500)
-    })
+    });
+
+    grunt.registerTask('jsProd', ['addPublicPrefix', 'uglify:toProd', 'addMinifiedFiles']);
+    grunt.registerTask('serve', ['livereloadserver', 'nodemon:dev']);
 
 
 };
