@@ -118,7 +118,7 @@ module.exports = function (grunt) {
         require('./config').setEnv('prod');
 
 
-        require('./bin/www').runing(function (port) {
+        require('./bin/www').Server.on('open', function (port) {
             grunt.log.ok('Server listening in port: ' + port);
             var url = "http://127.0.0.1:" + port;
             require('open')(url);

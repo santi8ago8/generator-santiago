@@ -3,7 +3,10 @@
 <h2>Comentarios</h2>
 <div class="comments">
     <form ng-submit="sendComment()">
-        <md-text-float label="Enviar un comentario" ng-model="nuevoComentario"></md-text-float>
+    	<md-input-container>
+    		<label>Enviar un comentario</label>
+    		<input type="text" ng-model="nuevoComentario">
+    	</md-input-container>
     </form>
     <div class="comment" style="text-shadow: 0px 0px 6px {{c.color}}"  ng-repeat="c in comments">{{c.comment}}</div>
 </div>
