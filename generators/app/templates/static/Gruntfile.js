@@ -112,7 +112,26 @@ module.exports = function (grunt) {
     grunt.registerTask('jsProd', ['addPublicPrefix', 'uglify:toProd', 'addMinifiedFiles']);
     grunt.registerTask('serve', ['livereloadserver', 'nodemon:dev']);
 
+    grunt.registerTask('deploy:run', function () {
+        var done = this.async();
+        //production fake env variable
+        require('./config').setEnv('prod');
 
+
+        require('./bin/www').runing(function (port) {
+            grunt.log.ok('Server listening in port: ' + port);
+            var url = "http://127.0.0.1:" + port;
+            require('open')(url);
+            grunt.log.ok('Opening: ' + url);
+        });
+    });
+    grunt.registerTask('deploy', [
+        'addPublicPrefix',
+        'uglify:toProd',
+        'addMinifiedFiles',
+        'deploy:run'
+    ])
+    
 };
 
 
